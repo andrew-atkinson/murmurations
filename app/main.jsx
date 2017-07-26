@@ -11,33 +11,23 @@ import React from 'react'
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
-
+import simpleProject from './components/simpleProject'
+import oneProject from './components/oneProject'
+import manyBirds from './components/manyBirds'
+import separating from './components/separating'
+import flocking from './components/flocking'
+import flowField from './components/flowField'
 import store from './store'
-import Jokes from './components/Jokes'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
-import NotFound from './components/NotFound'
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
-      </Route>
-      <Route path='*' component={NotFound} />
+      <Route exact path="/" component={oneProject}></Route>
+      <Route exact path="/1" component={simpleProject}></Route>
+      <Route exact path="/2" component={manyBirds}></Route>
+      <Route exact path="/3" component={separating}></Route>
+      <Route exact path="/4" component={flocking}></Route>
+      <Route exact path="/5" component={flowField}></Route>
     </Router>
   </Provider>,
   document.getElementById('main')
